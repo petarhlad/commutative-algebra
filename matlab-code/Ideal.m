@@ -22,42 +22,7 @@
 ## Author: Petar <petar@dubi-HP-EliteBook-Folio-1040-G3>
 ## Created: 2017-05-19
 
-function [G,M,S,n,r] = Ideal()
-
-n = 5; % Number of variables (x_1, ..., x_n)
-
-r = 4; % Number of monomial generators of the ideal
-
-% The matrix with the exponents of the monomial generators. The size is r*n.
-
-%M = [  
-%4 0 0 0 0 0 0
-%0 4 0 0 0 0 0
-%0 2 2 0 0 0 0
-%0 0 4 0 0 0 0
-%0 0 0 4 0 0 0
-%1 0 0 2 1 0 0
-%0 0 0 0 4 0 0
-%0 2 0 0 0 2 0
-%0 0 0 0 0 4 0
-%0 0 0 2 0 0 2
-%0 0 0 0 0 0 4
-%]
-
-%M = [  
-%1 1 0 0 0
-%0 1 1 0 0
-%0 0 1 1 0
-%0 0 0 1 1
-%]
-
-M = [
-2 0 0
-1 1 0
-0 3 1
-]
-
-M = M([2 1 3],:)
+function [G,S,n,r] = Ideal(M)
 
 r = size(M)(1);
 n = size(M)(2);
@@ -72,6 +37,5 @@ for i = 1:2**r
     G(i,i+2**(r-j)) = 1;
   endfor
 endfor
-
 
 endfunction

@@ -1,4 +1,4 @@
-[G,M,S,n,r] = Ideal();
+function [d,s,modules,S] = Pruned_Taylor_res(M,G,S,n,r)
 
 d = cell(1,r); % the differential maps
 s = cell(1,r); % the signs of the coefficients of the differential maps
@@ -33,10 +33,11 @@ G(:,ipruned) = [];
 S(:,ipruned) = [];
 
 [facets, faces, ~] = find(G);
-% G = full(sparse(facets,faces,ones(1,length(facets)),2**r,2**r));
+
+mod_dim = sum(S,1).*(sum(G,1)!=0);
 
 for i = 1:r
-  modules{i} = find((sum(S,1)==i).*(sum(G,1)!=0));
+  modules{i} = find(mod_dim == i);
   if i == 1
     rows = 1;
   else
@@ -69,5 +70,4 @@ for i = 2:size(S)(2)
   endif
 endfor
 
-print_resolution(d,s,modules,S,M);
-betti = print_betti_table(d,s,modules,S,M);
+endfunction

@@ -1,4 +1,4 @@
-[G,M,S,n,r] = Ideal();
+function [d,s,modules] = Scarf_complex(M,G,S,n,r)
 
 d = cell(1,r); % the differential maps
 s = cell(1,r); % the signs of the coefficients of the differential maps
@@ -57,4 +57,10 @@ for i = 2:size(S)(2)
   endif
 endfor
 
+printf("%% Scarf complex\n\n");
+
 print_resolution(d,s,modules,S,M);
+
+printf("\n\n");
+
+endfunction

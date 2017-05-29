@@ -1,14 +1,16 @@
-[G,M,S,n,r] = Ideal();
+function [d,s,modules,S] = Taylor_res(M,G,S,n,r)
 
 d = cell(1,r); % the differential maps
 s = cell(1,r); % the signs of the coefficients of the differential maps
 modules = cell(1,r); % the indices of the faces with dimension r
 
 [facets, faces, ~] = find(G);
-% G = full(sparse(facets,faces,ones(1,length(facets)),2**r,2**r));
+
+
+mod_dim = sum(S,1);
 
 for i = 1:r
-  modules{i} = find(sum(S,1)==i);
+  modules{i} = find(mod_dim == i);
   if i == 1
     rows = 1;
   else
@@ -17,8 +19,6 @@ for i = 1:r
   d{i} = zeros(rows,length(modules{i}),n);
   s{i} = zeros(rows,length(modules{i}));
 endfor
-
-
 
 for i = 2:2**r
 
@@ -43,4 +43,4 @@ for i = 2:2**r
   endif
 endfor
 
-print_free_resolution(d,s,modules,S,M);
+endfunction
